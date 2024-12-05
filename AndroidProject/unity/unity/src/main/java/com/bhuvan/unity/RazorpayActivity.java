@@ -52,8 +52,9 @@ public class RazorpayActivity extends Activity implements PaymentResultListener 
         Log.i("PaymentSuccess", "Payment successful: " + razorpayPaymentID);
         Toast.makeText(this, "Payment Successful: " + razorpayPaymentID, Toast.LENGTH_LONG).show();
 
-        // Inform MyPlugin
-        MyPlugin.getInstance().onPaymentSuccess(razorpayPaymentID);
+        // Notify the Plugin
+        MyPlugin.getInstance().notifyPaymentSuccess(razorpayPaymentID);
+
         finish();
     }
 
@@ -62,8 +63,10 @@ public class RazorpayActivity extends Activity implements PaymentResultListener 
         Log.e("PaymentError", "Payment failed: " + message);
         Toast.makeText(this, "Payment Failed: " + message, Toast.LENGTH_LONG).show();
 
-        // Inform MyPlugin
-        MyPlugin.getInstance().onPaymentError(code, message);
+        // Notify the Plugin
+        MyPlugin.getInstance().notifyPaymentError(message);
+
         finish();
     }
+
 }

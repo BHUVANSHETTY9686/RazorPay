@@ -32,10 +32,10 @@ public class PluginController : MonoBehaviour
 
     void Start()
     {
-        // Initialize MyPlugin with the Activity context before using it
         using (AndroidJavaObject activity = GetUnityActivity())
         {
-            PluginInstance.Call("initialize", activity);
+            PaymentResultHandler handler = new PaymentResultHandler(OnPaymentSuccess, OnPaymentError);
+            PluginInstance.Call("initialize", activity, handler);
         }
     }
 
@@ -50,8 +50,22 @@ public class PluginController : MonoBehaviour
             Debug.LogWarning("Payment is supported only on Android.");
         }
     }
+    public void Init()
+    {
+        PluginController pluginController = FindObjectOfType<PluginController>();
+        pluginController.StartPayment(500.0); // Amount in INR
+    }
 
-    // Helper method to get the Unity activity
+    private void OnPaymentSuccess(string paymentId)
+    {
+        Debug.Log($"Unity Payment Successful: {paymentId}");
+    }
+
+    private void OnPaymentError(string errorMessage)
+    {
+        Debug.Log($"Unity Payment Failed: {errorMessage}");
+    }
+
     private AndroidJavaObject GetUnityActivity()
     {
         using (AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
@@ -59,10 +73,4 @@ public class PluginController : MonoBehaviour
             return unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
         }
     }
-    public void Init()
-    {
-        PluginController pluginController = FindObjectOfType<PluginController>();
-        pluginController.StartPayment(500.0); // Amount in INR
-    }
-
 }
