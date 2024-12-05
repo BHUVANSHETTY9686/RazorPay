@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="com.bhuvan.unity.RazorpayActivity"
+            android:exported="false">
+        </activity>
+
+        <!-- Razorpay Required Configuration -->
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_7nwIbkoTeDMauq" />
+    </application>
+
+</manifest>
