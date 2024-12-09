@@ -6,11 +6,6 @@
             android:name="com.bhuvan.unity.RazorpayActivity"
             android:exported="false">
         </activity>
-
-        <!-- Razorpay Required Configuration -->
-        <meta-data
-            android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_7nwIbkoTeDMauq" />
     </application>
 
 </manifest>

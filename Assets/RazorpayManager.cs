@@ -27,9 +27,10 @@ public class RazorpayManager : MonoBehaviour
         SetUnityFailureCallback(OnPaymentFailureHandler);
 #endif
     }
-
+#if UNITY_IOS
     public void Init()
     {
+        
         StartPayment(
             apiKey: "rzp_test_pkGw5CRkJuxMwn",
             orderId: "order_PV3QmlXOx0MoGx",
@@ -41,6 +42,7 @@ public class RazorpayManager : MonoBehaviour
             themeColor: "#F37254"
         );
     }
+#endif
 
     public void StartPayment(
         string apiKey,

@@ -1,7 +1,6 @@
 package com.bhuvan.unity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -17,26 +16,20 @@ public class RazorpayActivity extends Activity implements PaymentResultListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Start Razorpay Checkout
         try {
             Checkout checkout = new Checkout();
-            checkout.setKeyID("rzp_test_7nwIbkoTeDMauq");
+            checkout.setKeyID(getIntent().getStringExtra("api_key")); // Razorpay API Key
 
             JSONObject options = new JSONObject();
             options.put("name", "Merchant Name");
-            options.put("description", "Reference No. #123456");
+            options.put("description", getIntent().getStringExtra("description"));
             options.put("image", "http://example.com/image/rzp.jpg");
             options.put("order_id", getIntent().getStringExtra("order_id")); // Order ID passed from Unity
-            options.put("theme.color", "#3399cc");
-            options.put("currency", "INR");
+            options.put("theme.color", getIntent().getStringExtra("themeColor"));
+            options.put("currency", getIntent().getStringExtra("currency"));
             options.put("amount", getIntent().getDoubleExtra("amount", 0) * 100); // Amount in subunits
-            options.put("prefill.email", "gaurav.kumar@example.com");
-            options.put("prefill.contact", "9988776655");
-
-            JSONObject retryObj = new JSONObject();
-            retryObj.put("enabled", true);
-            retryObj.put("max_count", 4);
-            options.put("retry", retryObj);
+            options.put("prefill.email", getIntent().getStringExtra("email"));
+            options.put("prefill.contact", getIntent().getStringExtra("contact"));
 
             checkout.open(this, options);
         } catch (Exception e) {
@@ -68,5 +61,4 @@ public class RazorpayActivity extends Activity implements PaymentResultListener 
 
         finish();
     }
-
 }
