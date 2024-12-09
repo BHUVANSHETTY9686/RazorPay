@@ -3,7 +3,7 @@ import Foundation
 public struct PaymentDetails: Decodable {
     let apiKey: String
     let orderId: String
-    let amount: String
+    let amount: Double
     let currency: String
     let description: String
     let contact: String

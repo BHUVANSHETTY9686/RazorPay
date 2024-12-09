@@ -21,7 +21,7 @@ class RazorpayHandler: NSObject, RazorpayPaymentCompletionProtocol {
         // Prepare Razorpay payment options
         let options: [String: Any] = [
             "key": details.apiKey,
-            "amount": details.amount,
+            "amount": Int(details.amount * 100),
             "currency": details.currency,
             "description": details.description,
             "order_id": details.orderId,
