@@ -1,5 +1,5 @@
 {
-    "m_SelectedDeviceId": "3201e5047b0b2651",
+    "m_SelectedDeviceId": "01GAY1TLAK",
     "m_SelectedPackage": {
         "deviceId": "",
         "name": "",
@@ -12,6 +12,12 @@
             "deviceId": "3201e5047b0b2651",
             "name": "com.sec.android.app.launcher",
             "processId": 4857,
+            "exited": false
+        },
+        {
+            "deviceId": "01GAY1TLAK",
+            "name": "com.google.android.apps.nexuslauncher",
+            "processId": 28511,
             "exited": false
         }
     ],

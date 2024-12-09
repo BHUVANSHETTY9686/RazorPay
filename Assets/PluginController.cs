@@ -1,7 +1,8 @@
 using UnityEngine;
-
+#if UNITY_ANDROID
 public class PluginController : MonoBehaviour
 {
+
     const string pluginName = "com.bhuvan.unity.MyPlugin";
     static AndroidJavaClass _pluginClass;
     static AndroidJavaObject _pluginInstance;
@@ -73,4 +74,6 @@ public class PluginController : MonoBehaviour
             return unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
         }
     }
+  
 }
+#endif

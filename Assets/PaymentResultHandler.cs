@@ -1,7 +1,10 @@
 using UnityEngine;
-
+#if UNITY_ANDROID
 public class PaymentResultHandler : AndroidJavaProxy
 {
+
+    
+
     private System.Action<string> onSuccess;
     private System.Action<string> onError;
 
@@ -23,4 +26,6 @@ public class PaymentResultHandler : AndroidJavaProxy
         Debug.Log($"Unity Payment Failed: {errorMessage}");
         onError?.Invoke(errorMessage);
     }
+
 }
+#endif
